@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Scope;
  * @modified By:
  * @version: :
  */
-//@Configuration
+@Configuration
 public class RabbitMqConfig {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -42,7 +42,7 @@ public class RabbitMqConfig {
         return connectionFactory;
     }
 
-    @Bean
+    @Bean(name = "rabbitTemplate")
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     //必须是prototype类型
     public RabbitTemplate rabbitTemplate() {

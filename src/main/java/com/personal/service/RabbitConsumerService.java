@@ -1,6 +1,5 @@
 package com.personal.service;
 
-import com.personal.mapper.RabbitMq;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
@@ -13,20 +12,11 @@ import org.springframework.stereotype.Service;
  * @version: :
  */
 @Service
-public class RabbitConsumerService implements RabbitMq<String> {
-    @RabbitListener(queues = "test")
+@RabbitListener(queues = "testRabbit")
+public class RabbitConsumerService {
     @RabbitHandler
     public void consumer (String test){
         System.out.println("test success : "+test);
     }
 
-    @Override
-    public void sendMsg(String s) {
-
-    }
-
-    @Override
-    public void receiveMsg(String s) {
-
-    }
 }
