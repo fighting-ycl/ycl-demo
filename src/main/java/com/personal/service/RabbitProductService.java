@@ -1,5 +1,6 @@
 package com.personal.service;
 
+import com.google.common.hash.Hashing;
 import com.rabbitmq.client.AMQP;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : YangChunLong
@@ -38,5 +42,10 @@ public class RabbitProductService {
     public void sendMsg (String content){
         Date date = new Date();
         rabbitTemplate.convertAndSend("testRabbit", content+"----"+date);
+    }
+
+    public static void main(String[] args) {
+        String hash = "hash";
+        System.out.println(hash.hashCode());
     }
 }
