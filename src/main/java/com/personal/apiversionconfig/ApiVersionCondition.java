@@ -1,5 +1,8 @@
 package com.personal.apiversionconfig;
 
+import com.personal.common.utils.StringUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,19 +35,29 @@ public class ApiVersionCondition implements RequestCondition<ApiVersionCondition
     }
 
     public ApiVersionCondition getMatchingCondition(HttpServletRequest request) {
-        Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURI());
-        if (m.find()) {
-            Integer version = Integer.valueOf(m.group(1));
-            if (version >= this.apiVersion) // when applying version number bigger than configuration, then it will take
-                // effect
-                return this;
-        }else {
-            Matcher matcher = WITHOUT_VERSION_PREFIX_PATTERN.matcher(request.getRequestURI());
-            if (matcher.find()){
+//        Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURI());
+        String ver = request.getHeader("v");
+        if (StringUtils.isNumeric(ver)){
+            Integer version = Integer.valueOf(ver);
+            if (version >= this.apiVersion){
                 return this;
             }
+        }else {
+            return this;
         }
         return null;
+//        if (m.find()) {
+//            Integer version = Integer.valueOf(m.group(1));
+//            if (version >= this.apiVersion) // when applying version number bigger than configuration, then it will take
+//                // effect
+//                return this;
+//        }else {
+//            Matcher matcher = WITHOUT_VERSION_PREFIX_PATTERN.matcher(request.getRequestURI());
+//            if (matcher.find()){
+//                return this;
+//            }
+//        }
+//        return null;
     }
 
     public int compareTo(ApiVersionCondition other, HttpServletRequest request) {

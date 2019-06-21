@@ -27,7 +27,7 @@ public class SocialController {
 
     @ApiVersion(1)
     @ResponseBody
-    @RequestMapping(value = "/helloWord/{version}",method = RequestMethod.GET)
+    @RequestMapping(value = "/helloWord",method = RequestMethod.GET)
     public String testStart(){
         logger.warn("Hello 日志！");
         return "Hello Spring Boot ! ";
@@ -35,7 +35,7 @@ public class SocialController {
 
     @ApiVersion(1)
     @ResponseBody
-    @RequestMapping(value = "/testRabbit/{version}",method = RequestMethod.GET)
+    @RequestMapping(value = "/testRabbit",method = RequestMethod.GET)
     public String testRabbitMq (@RequestParam(value = "msg")String msg){
         rabbitProductService.sendMsg(msg);
         return "发送成功!";
