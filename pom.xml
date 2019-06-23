@@ -17,7 +17,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
+        <!-- 框架以及中间件 整合 -->
+        <mybatis-spring.version>2.0.0</mybatis-spring.version>
+        <mysql-connector.version>6.0.6</mysql-connector.version>
         <!-- **********************  第三方包  ************************** -->
         <common-lang3.version>3.4</common-lang3.version>
         <common-lang.version>2.4</common-lang.version>
@@ -42,8 +44,38 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- ***********************   框架 、 中间件 整合  *********************** -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+        </dependency>
+        <!-- 数据源启动器 默认支持四种类型但只能有一个生效，生效先后顺序如下：Tomcat > Hikari > Dbcp > Dbcp2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- **********************  第三方包  ************************** -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -120,10 +152,7 @@
             <artifactId>jstl</artifactId>
             <!-- <version>3.0.1</version> -->
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
+        <!-- *********************** 分割线 ***************************** -->
     </dependencies>
     <!--这个插件，可以将应用进行打包成一个可执行的jar包-->
     <build>

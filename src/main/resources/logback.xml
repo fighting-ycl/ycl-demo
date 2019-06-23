@@ -19,7 +19,7 @@
     <logger name="com.personal" level="warn" additivity="true"/>
     <logger name="com.personal.common" level="info" additivity="false"/>
     <logger name="com.personal.controller" level="warn" additivity="true"/>
-    <logger name="com.personal.mapper" level="info" additivity="false"/>
+    <logger name="com.personal.dao" level="info" additivity="false"/>
     <logger name="com.personal.SampleApplication" level="info" additivity="false"/>
     <logger name="com.personal.service" level="info" additivity="false"/>
 
