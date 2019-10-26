@@ -17,6 +17,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!-- 框架以及中间件 整合 -->
+        <mybatis-spring.version>2.0.0</mybatis-spring.version>
+        <mysql-connector.version>5.7</mysql-connector.version>
+        <!-- **********************  第三方包  ************************** -->
+        <common-lang3.version>3.4</common-lang3.version>
+        <common-lang.version>2.4</common-lang.version>
+        <commons-collection.version>3.2.1</commons-collection.version>
+        <guava.version>18.0</guava.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <!-- *********************** 分割线 ***************************** -->
     </properties>
     <dependencies>
         <dependency>
@@ -36,6 +47,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- ***********************   框架 、 中间件 整合  *********************** -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
@@ -52,29 +64,52 @@
             <version>1.0.11</version>
         </dependency>
         <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- 数据源启动器 默认支持四种类型但只能有一个生效，生效先后顺序如下：Tomcat > Hikari > Dbcp > Dbcp2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- **********************  第三方包  ************************** -->
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>${common-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
-            <version>2.4</version>
+            <version>${common-lang.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
+            <version>${commons-collection.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
-            <version>0.4.8</version>
+            <version>${thumbnailator.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -92,7 +127,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.slf4j</groupId>-->

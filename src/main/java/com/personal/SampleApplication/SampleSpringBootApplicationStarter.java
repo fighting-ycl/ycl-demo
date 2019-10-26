@@ -1,8 +1,11 @@
 package com.personal.SampleApplication;
-
+import com.personal.config.DataSourceConfig;
+import com.personal.config.RabbitMqConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+
 
 /**
  * @author : YangChunLong
@@ -12,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @version: :
  */
 @SpringBootApplication
+@Import(value = {DataSourceConfig.class, RabbitMqConfig.class})
 @ComponentScan(basePackages = {"com.personal"})
 public class SampleSpringBootApplicationStarter {
     public static void main(String[] args) {
