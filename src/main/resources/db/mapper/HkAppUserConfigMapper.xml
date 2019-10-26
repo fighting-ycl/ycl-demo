@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.personal.dao.mapper.HkAppUserConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.personal.dao.model.HkAppUserConfig" >
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="notify" property="notify" jdbcType="INTEGER" />
+    <result column="reverse1" property="reverse1" jdbcType="VARCHAR" />
+    <result column="reverse2" property="reverse2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, notify, reverse1, reverse2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hk_app_user_config
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hk_app_user_config
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.personal.dao.model.HkAppUserConfig" >
+    insert into hk_app_user_config (userId, notify, reverse1, 
+      reverse2)
+    values (#{userid,jdbcType=INTEGER}, #{notify,jdbcType=INTEGER}, #{reverse1,jdbcType=VARCHAR}, 
+      #{reverse2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.dao.model.HkAppUserConfig" >
+    insert into hk_app_user_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="notify != null" >
+        notify,
+      </if>
+      <if test="reverse1 != null" >
+        reverse1,
+      </if>
+      <if test="reverse2 != null" >
+        reverse2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="notify != null" >
+        #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="reverse1 != null" >
+        #{reverse1,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse2 != null" >
+        #{reverse2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.dao.model.HkAppUserConfig" >
+    update hk_app_user_config
+    <set >
+      <if test="notify != null" >
+        notify = #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="reverse1 != null" >
+        reverse1 = #{reverse1,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse2 != null" >
+        reverse2 = #{reverse2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.dao.model.HkAppUserConfig" >
+    update hk_app_user_config
+    set notify = #{notify,jdbcType=INTEGER},
+      reverse1 = #{reverse1,jdbcType=VARCHAR},
+      reverse2 = #{reverse2,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
