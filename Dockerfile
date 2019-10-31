@@ -2,7 +2,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/hk-java/java:8-jre-cron
 
 MAINTAINER fighting_yang
 
-COPY /target/hk-social.jar /opt/hk/
+COPY /target/springboot-0.0.1.SNAPSHOT.jar /opt/hk/
 
 WORKDIR /opt/hk
 
