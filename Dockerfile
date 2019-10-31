@@ -10,4 +10,4 @@ ENV TZ=Asia/Shanghai
 
 EXPOSE 8080
 
-CMD unzip -o -d /opt/hk/ /opt/hk/hk-social.jar && java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom  -cp . org.springframework.boot.loader.JarLauncher
+CMD unzip -o -d /opt/hk/ /opt/hk/springboot-0.0.1.SNAPSHOT.jar && java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom  -cp . org.springframework.boot.loader.JarLauncher
