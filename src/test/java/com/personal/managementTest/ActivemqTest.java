@@ -24,15 +24,34 @@ public class ActivemqTest {
     private ActivemqProducer activemqProducer;
     @Autowired
     private ActivemqConsumer activemqConsumer;
+    private String queue = "queue1";
+    private String topic = "topic1";
     @Test
-    public void testSendMessage(){
+    public void testSendMessagePoint(){
         String message = "hello activemq";
         String destination = "queue1";
-        Assert.assertEquals(true,activemqProducer.sendMessage(message,destination));
+        Assert.assertEquals(true,activemqProducer.sendMessagePoint(message,destination));
     }
     @Test
-    public void testReceiveMessage (){
+    public void testReceiveMessagePoint (){
         String destination = "queue1";
-        Assert.assertEquals("hello activemq",activemqConsumer.receiveMessage(destination));
+        Assert.assertEquals("hello activemq",activemqConsumer.receiveMessagePoint(destination));
+    }
+    @Test
+    public void testReceiveMessageThreads(){
+        activemqConsumer.consumePoint();
+    }
+
+    @Test
+    public void testProductMessageTopic (){
+        activemqProducer.sendMessageTopic("我是一个topic",topic);
+    }
+    @Test
+    public void testConsumerMessageTopic (){
+        activemqConsumer.receiveMessageTopic(topic);
+    }
+    @Test
+    public void testMoreConsumeMessage(){
+        activemqConsumer.consumeTopic();
     }
 }
