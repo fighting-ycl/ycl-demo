@@ -34,4 +34,37 @@ public class SortUtils {
         }
         return arrays;
     }
+
+    /**
+     * @author     : YangChunLong
+     * @date       : Created in 2019/12/4 09:52
+     * @description: 冒泡排序 ,复杂度O(n^2)
+     * @modified By:
+      * @Param: array
+     * @return     : int[]
+     */
+    public static int[] maopaoSort (int[] array){
+        int length = array.length;
+        for (int i = 0; i < length; i++) {
+            for (int j = i+1; j < length; j++) {
+                if (array[j]>array[i]){
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    public static void main(String[] args) {
+        int[] array = new int[10];
+        for (int i = 0; i < 10; i++) {
+            array[i] = i;
+        }
+        array = maopaoSort(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
 }

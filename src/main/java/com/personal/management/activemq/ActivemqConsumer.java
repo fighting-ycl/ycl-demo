@@ -74,10 +74,10 @@ public class ActivemqConsumer {
         return text;
     }
 
-    public void testMsgRecover (){
-        ConnectionFactory connectionFactory;
-        Connection connection
-    }
+//    public void testMsgRecover (){
+//        ConnectionFactory connectionFactory;
+//        Connection connection
+//    }
 
     public void consumePoint (){
         for (int i = 0; i <3 ; i++) {
